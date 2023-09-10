@@ -1,0 +1,33 @@
+@startuml
+
+!includeurl https://raw.githubusercontent.com/manuvai/plantuml-utils/master/usecase_diagram_utils.puml
+
+actor Joueur as user
+
+rectangle Jeu {
+    
+    usecase("Connaître la valeur d'une action", getActionValue)
+    usecase("Connaître la valeur d'un portefeuille", getPortefeuilleValue)
+    usecase("Acheter des actions", buy)
+    usecase("Vendre des actions", sell)
+    usecase("Enregistrer le cours d'une action", registerAction)
+    usecase("Enregistrer une action composée", registerCompositeAction)
+}
+
+user -> getActionValue
+user -> getPortefeuilleValue
+user -> buy
+user -> sell
+user -> registerAction
+user -> registerCompositeAction
+
+getPortefeuilleValue ..> getActionValue : <<include>>
+
+getActionValue .[hidden]down. getPortefeuilleValue
+getPortefeuilleValue .[hidden]down. buy
+buy .[hidden]down. sell
+sell .[hidden]down. registerAction
+registerAction .[hidden]down. registerCompositeAction
+
+
+@enduml

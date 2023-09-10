@@ -1,0 +1,36 @@
+@startuml
+
+!includeurl https://raw.githubusercontent.com/manuvai/plantuml-utils/master/class_diagram_utils.puml
+
+class Portefeuille {
+    
+}
+
+abstract Action {
+    -string(libelle)
+    +{abstract} getValue()
+}
+
+class Jour {
+    member(float, cours)
+    int(annee)
+    int(numeroJour)
+}
+
+class ActionComposee {
+    
+}
+
+class ActionSimple {
+
+}
+
+Portefeuille "1..1" ->  "0..*" Action
+ActionSimple "1..1" -right-> "0..*" Jour
+
+ActionComposee "1..1" -> "0..*" ActionSimple 
+
+extends(ActionSimple, Action, up)
+extends(ActionComposee, Action, up)
+
+@enduml
