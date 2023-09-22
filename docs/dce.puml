@@ -35,6 +35,13 @@ class Pourcentage {
     +void("setPortion(float)")
 }
 
+class Quantite {
+    -int(quantiteActions)
+    +construct("Quantite(int)")
+    +void("setQuantiteActions(int)")
+    +int("getQuantiteActions()")
+}
+
 class ActionComposee {
     +construct("ActionComposee(String)")
     +void("enregistrerComposition(ActionSimple, Pourcentage)")
@@ -51,12 +58,14 @@ class ActionSimple {
     +int("hashCode()")
 }
 
-Portefeuille "1..1" -left->  "0..*" Action : member("Map<Action, Integer>", actions)
-ActionSimple "1..1" -down-> "0..*" Cours : list(Cours, coursList)
+Portefeuille "1..1" -left->  "0..*" Action 
+ActionSimple "1..1" -up-> "0..*" Cours : list(Cours, coursList)
 
-ActionComposee "1..1" ---right---> "0..*" ActionSimple : member("Map<ActionSimple, Pourcentage>", composition)
+ActionComposee "1..1" ---right---> "0..*" ActionSimple
 
 Pourcentage .up. (ActionComposee, ActionSimple)
+
+(Action, Portefeuille) .. Quantite
 
 extends(ActionSimple, Action, down)
 extends(ActionComposee, Action, down)

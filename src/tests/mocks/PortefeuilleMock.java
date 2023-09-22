@@ -5,7 +5,7 @@ import res.Portefeuille;
 import res.actions.Action;
 import res.actions.ActionComposee;
 import res.actions.ActionSimple;
-import res.actions.Pourcentage;
+import res.keys.Pourcentage;
 
 public class PortefeuilleMock {
 

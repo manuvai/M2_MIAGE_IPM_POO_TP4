@@ -1,5 +1,7 @@
 package res.actions;
 
+import res.keys.Pourcentage;
+
 import java.util.HashMap;
 import java.util.Map;
 

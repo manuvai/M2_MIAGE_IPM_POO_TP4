@@ -2,7 +2,7 @@ package tests.res;
 
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import res.actions.Pourcentage;
+import res.keys.Pourcentage;
 import res.exceptions.NoStackTraceRuntimeException;
 
 public class PourcentageTest {

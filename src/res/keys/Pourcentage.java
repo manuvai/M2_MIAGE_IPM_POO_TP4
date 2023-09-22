@@ -1,4 +1,4 @@
-package res.actions;
+package res.keys;
 
 import res.exceptions.NoStackTraceRuntimeException;
 

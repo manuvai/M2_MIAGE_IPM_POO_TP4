@@ -3,7 +3,7 @@ package tests.mocks;
 import res.Cours;
 import res.actions.ActionComposee;
 import res.actions.ActionSimple;
-import res.actions.Pourcentage;
+import res.keys.Pourcentage;
 
 public class ActionComposeeMock {
     public ActionComposee getActionComposeeSample() {
