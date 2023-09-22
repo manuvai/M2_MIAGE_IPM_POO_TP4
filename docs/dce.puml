@@ -3,34 +3,62 @@
 !includeurl https://raw.githubusercontent.com/manuvai/plantuml-utils/master/class_diagram_utils.puml
 
 class Portefeuille {
-    
+    +void("acheterAction(Action)")
+    +void("vendreAction(Action)")
+    +float("getValue(int, int)")
 }
 
 abstract Action {
-    -string(libelle)
-    +{abstract} getValue()
+    #string(libelle)
+    +construct("Action(String)")
+    +{abstract} float("getValue(int, int)")
+    +boolean("equals(Object)")
+    +int("hashCode()")
 }
 
-class Jour {
-    member(float, cours)
-    int(annee)
-    int(numeroJour)
+class Cours {
+    -float(valeur)
+    -int(annee)
+    -int(numeroJour)
+    +construct("Cours(float, int, int)")
+    +float("getValeur()")
+    +int("getAnnee()")
+    +int("getNumeroJour()")
+    -void("setNumeroJour(int)")
+    -void("setAnnee(int)")
+}
+
+class Pourcentage {
+    -float(portion)
+    +construct("Pourcentage(float)")
+    +float("getPortion()")
+    +void("setPortion(float)")
 }
 
 class ActionComposee {
-    
+    +construct("ActionComposee(String)")
+    +void("enregistrerComposition(ActionSimple, Pourcentage)")
+    +float("getValue(int, int)")
+    +boolean("equals(Object)")
+    +int("hashCode()")
 }
 
 class ActionSimple {
-
+    +construct("ActionSimple(String)")
+    +void("enregistrerCours(Cours)")
+    +float("getValue(int, int)")
+    +boolean("equals(Object)")
+    +int("hashCode()")
 }
 
-Portefeuille "1..1" ->  "0..*" Action
-ActionSimple "1..1" -right-> "0..*" Jour
+Portefeuille "1..1" -left->  "0..*" Action : member("Map<Action, Integer>", actions)
+ActionSimple "1..1" -down-> "0..*" Cours : list(Cours, coursList)
 
-ActionComposee "1..1" -> "0..*" ActionSimple 
+ActionComposee "1..1" ---right---> "0..*" ActionSimple : member("Map<ActionSimple, Pourcentage>", composition)
 
-extends(ActionSimple, Action, up)
-extends(ActionComposee, Action, up)
+Pourcentage .up. (ActionComposee, ActionSimple)
+
+extends(ActionSimple, Action, down)
+extends(ActionComposee, Action, down)
 
 @enduml
