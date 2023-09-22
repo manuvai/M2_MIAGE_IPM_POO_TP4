@@ -3,7 +3,6 @@ package tests.res;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import res.actions.ActionComposee;
-import res.actions.ActionSimple;
 import tests.mocks.ActionComposeeMock;
 
 public class ActionComposeeTest {

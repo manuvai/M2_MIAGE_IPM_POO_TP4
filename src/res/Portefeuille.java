@@ -33,6 +33,20 @@ public class Portefeuille {
         actions.get(action).decrement();
     }
 
+    public float getValueAction(String nomAction, int annee, int numeroJour) {
+        Action action = Objects.isNull(nomAction)
+                ? null
+                : actions.keySet()
+                        .stream()
+                        .filter(actionElement -> actionElement.getLibelle().equals(nomAction))
+                        .findFirst()
+                        .orElse(null);
+
+        return Objects.isNull(action)
+                ? 0
+                : action.getValue(annee, numeroJour);
+    }
+
     public float getValue(int annee, int numeroJour) {
         float valeur = 0;
 

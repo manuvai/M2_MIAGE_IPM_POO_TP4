@@ -1,6 +1,5 @@
 package tests.res;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import res.Cours;

@@ -83,4 +83,27 @@ public class PortefeuilleTest {
 
     }
 
+    @Test
+    public void getValueAction_NomActionNull_Ko() {
+        Portefeuille portefeuille = portefeuilleMock.getPortefeuilleSample();
+
+        Assertions.assertEquals(0, portefeuille.getValueAction(null, 2020, 1));
+    }
+
+    @Test
+    public void getValueAction_ActionNonPossedee_Ko() {
+        Portefeuille portefeuille = portefeuilleMock.getPortefeuilleSample();
+
+        Assertions.assertEquals(0, portefeuille.getValueAction("Action bidon", 2020, 1));
+
+    }
+
+    @Test
+    public void getValueAction_ActionPossedee_Ok() {
+        Portefeuille portefeuille = portefeuilleMock.getPortefeuilleWithMixedActions();
+
+        Assertions.assertEquals(340, portefeuille.getValueAction("Lvmh", 2023, 1));
+
+    }
+
 }
